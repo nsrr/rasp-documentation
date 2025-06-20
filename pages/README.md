@@ -4,7 +4,7 @@ The RASP project used retrospective clinical pediatric sleep recordings from fiv
 
 Please see this manuscript for more information on the cohort: 
 
- - [Gong NN, Mahat A, Ahmad S, Glaze D, Maletic-Savatic M, McGinley M, Morse AM, Rodriguez AJ, Thurm A, Redline S, Maski K, Davis P, Purcell S & Buckley A (2025) _Leveraging clinical sleep data across multiple pediatric cohorts for insights into neurodevelopment: the retrospective analysis of sleep in Pediatric (RASP) cohorts study._ SLEEP, _zsaf157_.](https://pubmed.ncbi.nlm.nih.gov/40488421/)
+ - [Gong NN, Mahat A, Ahmad S, Glaze D, Maletic-Savatic M, McGinley M, Morse AM, Rodriguez AJ, Thurm A, Redline S, Maski K, Davis P, Purcell S, Buckley A. Leveraging clinical sleep data across multiple pediatric cohorts for insights into neurodevelopment: the retrospective analysis of sleep in Pediatric (RASP) cohorts study. Sleep. 2025 Jun 9:zsaf157. doi: 10.1093/sleep/zsaf157. Epub ahead of print. PMID: 40488421.](https://pubmed.ncbi.nlm.nih.gov/40488421/)
 
 ## Data de-identification
 
@@ -254,7 +254,7 @@ The harmonized datasets only contain EEG, EOG and EMG signals: analyses of other
 
 ## Access and usage restrictions
 
-The RASP dataset is only available for non-commercial use.
+The RASP dataset is available for commercial and non-commercial use. Users must have an approved NSRR data request to access RASP data.
 
 ## Citation and acknowledgement
 
