@@ -1,14 +1,16 @@
 ## About
 
-The RASP project used retrospective clinical pediatric sleep recordings from five sites.   As manual staging was only present in some sites, we developed a pediatric stager based on other NSRR samples (primarily NCH-SDB) and auto-scored all studies consistently.   As the primary focus of the RASP consortium was on EEG based signals, to study sleep micro-architecture with respect to development and neurodevelopmental disorders (NDD), the harmonized dataset presented below includes only EEG, EOG and EMG signals.   The original _as is_ files contain a variety of standard PSG channels, including respiratory signals.  Note that the original data were received in a relatively heterogeneous and challenging format (e.g. in some cases single night recordings split over multiple, potentially overlapping single EDFs, and also including some gapped (EDF+D) files, some inherent inconsistencies in ID conventions,  differences in the montages and referencing used, and a few cases of apparent channel mislabeling).   We endeavored to correct and harmonize most of these issues for the central analyses: these EDFs (i.e. standardized one-per-recording, with consistent stage annotation formats in Luna `.annot` files, etc) are presented in the `harmonized/` folder.  The original data are presented _as is_ in the `original/` folder.  The harmonized set will be significantly easier to work with, and should be sufficient for most purposes as long as the focus of analysis is on the sleep EEG (or EOG/EMG). 
+The RASP project used retrospective clinical pediatric sleep recordings from five sites. As manual staging was only present in some sites, we developed a pediatric stager based on other NSRR samples (primarily [NCHSDB](https://sleepdata.org/datasets/nchsdb/)) and auto-scored all studies consistently. As the primary focus of the RASP consortium was on EEG based signals, to study sleep micro-architecture with respect to development and neurodevelopmental disorders (NDD), the harmonized dataset presented below includes only EEG, EOG and EMG signals. The original _as is_ files contain a variety of standard PSG channels, including respiratory signals. Note that the original data were received in a relatively heterogeneous and challenging format (e.g. in some cases single night recordings split over multiple, potentially overlapping single EDFs, and also including some gapped (EDF+D) files, some inherent inconsistencies in ID conventions, differences in the montages and referencing used, and a few cases of apparent channel mislabeling). We endeavored to correct and harmonize most of these issues for the central analyses: these EDFs (i.e. standardized one-per-recording, with consistent stage annotation formats in Luna `.annot` files, etc) are presented in the `harmonized/` folder.  The original data are presented _as is_ in the `original/` folder. The harmonized set will be significantly easier to work with, and should be sufficient for most purposes as long as the focus of analysis is on the sleep EEG (or EOG/EMG). 
 
 Please see this manuscript for more information on the cohort: 
 
- - Gong NN, Mahat A, Ahmad S, Glaze D, Maletic-Savatic M, McGinley M, Morse AM, Rodriguez AJ, Thurm A, Redline S, Maski K, Davis P, Purcell S & Buckley A (2025) _Leveraging clinical sleep data across multiple pediatric cohorts for insights into neurodevelopment: the retrospective analysis of sleep in Pediatric (RASP) cohorts study._ SLEEP, _zsaf157_. 
- - https://pubmed.ncbi.nlm.nih.gov/40488421/
- - https://doi.org/10.1093/sleep/zsaf157
+ - [Gong NN, Mahat A, Ahmad S, Glaze D, Maletic-Savatic M, McGinley M, Morse AM, Rodriguez AJ, Thurm A, Redline S, Maski K, Davis P, Purcell S & Buckley A (2025) _Leveraging clinical sleep data across multiple pediatric cohorts for insights into neurodevelopment: the retrospective analysis of sleep in Pediatric (RASP) cohorts study._ SLEEP, _zsaf157_.](https://pubmed.ncbi.nlm.nih.gov/40488421/)
 
-### NSRR data structure
+## Data de-identification
+
+All personally identifiable information (PII) has been removed from the data files by the NSRR team.
+
+## Data overview
 
 _Harmonized dataset:_
 
@@ -24,9 +26,7 @@ _Original ("as is") dataset:_
 | `original/` | Original _as is_ full PSG data for the five site-specific sub-folders (`bch/`, `gei/`, `nih/`, `nyu/` & `tch/`)  (note: multiple split/overlapping EDFs per night for GEI and TCH, and other known issues as listed below) | 
 |`rasp-dataset-0.1.0.pre.csv` | Clinical & covariate data (text/CSV)|
 
- 
-
-## Original data
+### Original data
 
 RASP data were compiled across five sites:
 
@@ -38,23 +38,20 @@ RASP data were compiled across five sites:
 | `NYU` | New York University | 50 (50) | Y |
 | `TCH` | Texas Children's Hospital, Baylor College of Medicine | 872(1058) |  N |
 
-
-
 All sleep recordings were originally deposited as EDFs, but in varying formats, as described below.
 
-### BCH
+#### BCH
 
 All data were EDF+C records, including manual staging as EDF+ annotations.  EDFs contained between 51 and 105 channels.    Each individual had exactly one EDF recording.
 
 We extracted annotations with labels:   `Sleep_stage_N1`, `Sleep_stage_N2`, 
 `Sleep_stage_N3`, `Sleep_stage_R` and `Sleep_stage_W` (as well as a smaller number of `Sleep_stage_1`, `Sleep_stage_N` and `Sleep_stage_?`).
 
-### GEI
+#### GEI
 
 All records were standard EDF files; however, the N=150 individuals had recordings spread over multiple contiguous segments.  These were typically 4 minutes, but sometimes 1 hour; most were under 5 minutes. In total, there were 16,116 EDFs associated with the 150 GEI individuals.  
 
 For example, the individual with IID (individual ID) code `GEIS0002` had 106 EDFs (`GEIS0002-000000[001].edf`, `GEIS0002-000000[002].edf`, etc up to `GEIS0002-000000[106].edf`).
-
 
 |EDF|                          Clock time       |       Duration|
 |---|---|---|
@@ -70,8 +67,7 @@ EDFs varied in the channel montage, with  individuals having between 29 and 43 c
 luna --merge id=GEIS0002 edf=edfs/geis/GEIS0002.edf /path/to/edfs/GEIS0002-*.edf
 ```
 
-
-### NIH
+#### NIH
 
 NIH data were from two sources: 
 
@@ -82,15 +78,13 @@ Standard EDFs had between 16 and 27 channels.  The N=90 subset all had the follo
 
 The other EDFs often had bipolar channels (e.g. `P3-P4`) but also largely contained contra-lateral mastoid channels for the same subsets.
 
-
-### NYU
+#### NYU
 
 These N=50 recordings were a mixture of EDF and EDF+C, but with uniform channel montages (51 channels).
 
 We extracted staging when present in the EDF+C, followed by manual editing to remove occasional technician notes (e.g. 'REM' ) that overlapped with the full 30-second epoch staging also present.   We further corrected some inconsistent IDs. 
 
-
-### TCH
+#### TCH
 
 This was the most complex dataset, containing 872 individuals with recordings spread across 1,058 EDFs.   Furthermore:
 
@@ -102,10 +96,9 @@ This was the most complex dataset, containing 872 individuals with recordings sp
 
 Especially given the overlap in EDFs for the same individual, we elected to pick the single longest EDF for each individual to constitute the final harmonized set.
 
+### Harmonized data
 
-## Harmonized data
-
-### EDFs
+#### EDFs
 
 There were multiple instances across cohorts in which the ID conventions were inconsistent, and so these were fixed (e.g. dropping extraneous `-a` suffixes, or naming `patinet39` to `patient39`), so that the EDFs aligned with the demographic/clinical data and could be matched by ID. 
 
@@ -115,16 +108,16 @@ We saved all files as standard EDF, with an `.annot` annotation file containing 
 
 Several recordings were flagged (and either dropped or manually fixed) during this process.
 
-### EEG channels
+#### EEG channels
 
 To create a harmonized set of files, we focused on the sleep EEG channels.   Most studies had the following channels present, which were selected as the core set used in EEG-based analyses (tabulated below).  The channels `M1` and `M2` are the left and right mastoids: i.e. all data were set as contra-lateral mastoid referenced.   Most studies had `P4_M1` but not `P3_M2`, and so parietal channels were dropped from the primary harmonized analyses.  Some EDFs also contained midline electrodes, and so we also created/saved linked-mastoid referenced channels where appropriate (see below).
 
-### Channel mislabeling
+#### Channel mislabeling
 
 During analysis, we observed unusual patterns of spectral power and connectivity for the TCH cohort frontal channels.   On further review, it appeared that `Fp1_M2` and `Fp2_M1` were mislabeled and should be `F3_M2` and `F4_M1` respectively.  These have been swapped in the harmonized dataset, but are _as is_ in the original datasets.
 
 
-### Automated staging (Luna/POPS)
+#### Automated staging (Luna/POPS)
 
 As only three of the five cohorts had manual staging (and also, as the manual staging was performed by different raters across the different sites), to standardize analysis we automatically rescored all individuals. 
 
@@ -132,7 +125,7 @@ We explicitly trained a new POPS model on pediatric studies from the NSRR (calle
 
 Some studies with fewer than five stages (e.g. with only wake/sleep scoring) were dropped from evaluations. The `tri` model will shortly be posted on the main Luna website.  See the manuscript referenced above for more details on the automated staging approach developed for RASP.
 
-### Final harmonized (EEG/EOG/EMG) dataset
+#### Final harmonized (EEG/EOG/EMG) dataset
 
 After all exclusions, the final analytic sample comprised _N_ = 1,552 recordings (with 150, 150, 412, 50 and 790 from BCH, GEI, NIH, NYU and TCH respectively) on _N_ = 1,424 unique individuals.  These are distributed as standard EDFs (continuous, no annotation channels), with all (POPS-derived) staging annotations in the accompanying `.annot` files.
 
@@ -207,8 +200,6 @@ _EOG & EMG channels:_
  | | |               
 |	`EMG`	|	1462	|
 
-
-
 #### Clinical/covariate information
 
 There two files contain data on a superset of _N_ = 1,628 RASP individuals (i.e. not all of whom are represented in the final, harmonized dataset). 
@@ -247,29 +238,19 @@ There two files contain data on a superset of _N_ = 1,628 RASP individuals (i.e.
 |`dx_asd`| Has an ASD diagnosis (1=Y) |
 |`dx_trisomy21`| Has a DS diagnosis (1=Y) |
 
-
 Notes:
 
  - the harmonized covariate set has fewer individuals (the TCH individuals dropped)
  - whereas `nsrrid` in the original set aligns with `NSRRID` in the harmonized set, the EDF IDs in the original set should be ignored: i.e. they do not necessarily align with the actual EDFs the NSRR received from sites: for example, the individual with the IID `P15` has `P15.edf` listed in the original dataset, but it that does not exist: it was actually listed to `P15-2-anon.edf` (selected from `P15-1-annot.edf`,  `P15-2-annot.edf`,  `P15-3-annot.edf` and  `P15-4-annot.edf`).
  - because the original data were distributed to the NSRR at different times, some sites have varying ID schemes between the original and harmonized filesets
 
+### Known issues
 
-## Known issues
-
-The original dataset is presented _as is_:  as revealed in the harmonization process and alluded to above, there are a number of issues that must be confronted if working with the original data.   
+The original dataset is presented _as is_: as revealed in the harmonization process and alluded to above, there are a number of issues that must be confronted if working with the original data.   
 
 Since originally harmonizing these RASP studies, we have introduced the Luna `EDF-MINUS` command, which can be used to streamline the creation of standard EDFs from EDF+D files.  (It will not handle the case of multiple separate _but overlapping_ files, however).  A simple strategy would be to select EDFs based on the selected harmonized for (for TCH), but retained all channels.   For GEI, it will be necessary to `--merge` the original EDFs, although this can be easily performed using Luna. 
 
 The harmonized datasets only contain EEG, EOG and EMG signals: analyses of other (e.g. respiratory) signals will necessarily be based on these original data.
-
-## Methods
-
-## Data de-identification
-
-All personally identifiable information (PII) has been removed from the data files by the NSRR team.
-
-## Data overview
 
 ## Access and usage restrictions
 
