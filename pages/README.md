@@ -16,15 +16,15 @@ _Harmonized dataset:_
 
 | File/Folder | Contents | 
 |----|----|
-| `harmonized/` | Primary harmonized EDFs (EEG/EOG/EMG) and staging annotations (_N_ = 1,552 pairs) | 
-| `rasp-dataset-0.1.0-harm.tsv` | Simplified clinical & covariate data (text/TSV) |
+| [`harmonized/`](:files_path:/harmonized) | Primary harmonized EDFs (EEG/EOG/EMG) and staging annotations (_N_ = 1,552 pairs) | 
+| [`rasp-dataset-0.1.0-harm.tsv`](:files_path:/harmonized/rasp-dataset-0.1.0-harm.tsv) | Simplified clinical & covariate data (text/TSV) |
 
 _Original ("as is") dataset:_ 
 
 | File/Folder | Contents | 
 |----|----|
-| `original/` | Original _as is_ full PSG data for the five site-specific sub-folders (`bch/`, `gei/`, `nih/`, `nyu/` & `tch/`)  (note: multiple split/overlapping EDFs per night for GEI and TCH, and other known issues as listed below) | 
-|`rasp-dataset-0.1.0.pre.csv` | Clinical & covariate data (text/CSV)|
+| [`original/`](:files_path:/original) | Original _as is_ full PSG data for the five site-specific sub-folders (`bch/`, `gei/`, `nih/`, `nyu/` & `tch/`)  (note: multiple split/overlapping EDFs per night for GEI and TCH, and other known issues as listed below) | 
+| [`rasp-dataset-0.1.0.pre.csv`](:files_path:/original/rasp-dataset-0.1.0.pre.csv) | Clinical & covariate data (text/CSV)|
 
 ### Original data
 
